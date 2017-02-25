@@ -1,18 +1,186 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="/assets/css/style.css" />
-<h1>Bienvenue sur mon site pour savoir si vous avez fait une bonne affaire</h1>
+   <title>Have you find a good deal?</title>
+
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+<!--<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/assets/vendors/font-awesome-4.7.0/css/font-awesome.min.css">-->
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<script src="/assets/js/jquery-3.1.1.min.js"></script>
+
+<!--<script src="/assets/js/bootstrap.min.js"></script>-->
 </head>
 
- <body>
-    <p>Le resultat de la requete se trouve dans la console</p>
-<p> vous y trouverez le prix de votre bien sur leboncoin ainsiq ue le prix estimer par m2 du site meilleur agent bonne journée</p>
-</body>
-<div id="toto">
+<body>
 
+
+    <div>
+
+        <div>
+
+            <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+
+                aria-controls="navbar">
+
+
+          </button>
+
+        </div>
+
+    </div>
+
+
+        <main>
+
+           <div class="jumbotron">
+
+           <div class="container">
+
+        <h1>Welcome to my website!</h1>
+        <p> good deal or not ? </P>
+
+        <div class="row">
+
+            <div>
+
+                <form method="get" action="/process">
+
+                    <div class="row">
+
+                        <div class="col-xs-8 col-sm-9">
+
+                            <input type="text" class="form-control" name="lbcUrl" placeholder="https://www.leboncoin.fr">
+
+                        </div>
+
+                        <div class="col-xs-4 col-sm-3">
+
+                            <button type="submit" class="btn btn-default">send</button>
+
+                        </div>
+
+                   </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-</html>
+                <div>
+                    <% if ( typeof error !== 'undefined' ) { %>
+
+
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>
+        <p>
+            <%= error %>
+        </p>
+    </div>
+
+    <% }
+if ( typeof data !== 'undefined' ) { %>
+
+        <div class="row">
+
+            <div >
+                
+                        <span class="fa fa-home">
+                    </div>
+                    <div>Summary</div>
+                    <div class="data-value">
+                        <div>City</div>
+                        <div >
+                            <span class="upper"><%= data.lbcData.city.replace( /\_/g, '-' ) %></span>
+                        <span> (<%= data.lbcData.postalCode %>)</span>
+                    </div>
+                    <div >Price</div>
+                    <div >
+                        <span><%= data.lbcData.price %> €</span>
+                        <span> (<%= Math.round(data.lbcData.price/data.lbcData.surface) %> €/m<sup>2</sup>)</span>
+                    </div>
+                    <div >Surface</div>
+                    <div >
+                        <span><%= data.lbcData.surface %> m<sup>2</sup></span>
+                    </div>
+                    <div >
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <div >Is it a good deal?</div>
+                <div >
+                    <div >
+                        <% if ( data.deal.good ) { %>
+                            <div>
+                               
+                            </div>
+                            <div >
+                                <span>YES</span>
+                            </div>
+                            <% } else { %>
+                                <div >
+                                    <span></span>
+                                </div>
+                                <div >
+                                    <span>NO</span>
+                                </div>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div >
+            <div >
+                <div >
+                    <span >
+                    </div>
+                    <div >Average prices</div>
+                    <div >
+                        <%= data.lbcData.city.replace( /\_/g, '-' ) %>
+                    </div>
+                    <div "> <% if ( data.lbcData.type === 'appartement' ) { %>
+                    <% }%>
+                        <span><%= data.maData.priceAppart %> €</span>
+                </div>
+            </div>
+            <div>
+                <div>Price /m<sup>2</sup> (house)</div>
+                <div>
+                    <% if ( data.lbcData.type !== 'appartement' ) { %>
+
+                        <% }%>
+                            <span><%= data.maData.priceHouse %> €</span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+
+        <% } %>
+                </div>
+
+        </main>
+
+</body>
+ 
+ <html> 
+
+
